@@ -113,6 +113,11 @@ export default defineComponent({
         try {
           if (file) {
             this.file = file;
+            this.selectedMappingId = "";
+            this.fieldMapping = Object.keys(this.fields).reduce((map, field) => {
+              map[field] = "";
+              return map;
+            }, {});
             this.content = await this.parseCsv(this.file);
             this.fileColumns = Object.keys(this.content[0]);
             showToast(translate("File uploaded successfully"));
@@ -121,6 +126,7 @@ export default defineComponent({
           }
         } catch {
           this.content = []
+          this.selectedMappingId = ""; 
           showToast(translate("Please upload a valid purchase order csv to continue"));
         }
       },

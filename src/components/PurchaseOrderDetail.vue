@@ -1,5 +1,8 @@
 <template> 
-  <div v-for="(poItems, index) in itemsByPoId" :key="index">
+  <div v-if="!itemsByPoId ||  Object.keys(itemsByPoId).length === 0" class="empty-state ion-margin-top">
+    {{ translate("No purchase orders found") }}
+  </div>
+  <div v-else v-for="(poItems, index) in itemsByPoId" :key="index">
     <ion-item lines="none">
       <h3>{{ index }}</h3>
     </ion-item>
